@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CancerCare - Breast & Prostate Cancer Support</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #9e5b9a;
+            --accent: #e76f51;
+            --light: #f8f9fa;
+            --dark: #343a40;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .search-container {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 2rem;
+            position: relative;
+        }
+        
+        .search-container input {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .search-container button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .tabs {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .tab:nth-child(2).active {
+            background: var(--secondary);
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .content-section h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .cancer-type {
+            color: var(--secondary);
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .info-card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .info-card h3 {
+            display: flex;
+            align-items: center;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        
+        .info-card h3 i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .info-card ul {
+            padding-left: 1.5rem;
+        }
+        
+        .info-card li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight {
+            background: #e3f2fd;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .faq-section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+        }
+        
+        .faq-item {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1rem;
+        }
+        
+        .faq-item:last-child {
+            border: none;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .search-results {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .result-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .result-item:last-child {
+            border: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav {
+                flex-direction: column;
+            }
+            
+            .search-container {
+                margin: 1rem 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-hand-holding-heart"></i>
+                CancerCare
+            </div>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Ask about breast or prostate cancer...">
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="contact">
+                <i class="fas fa-phone-alt"></i> Helpline: 1-800-CANCER
+            </div>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" data-tab="breast">Breast Cancer</div>
+            <div class="tab" data-tab="prostate">Prostate Cancer</div>
+        </div>
+        
+        <!-- Breast Cancer Content -->
+        <div class="cancer-content" id="breastContent">
+            <div class="content-section">
+                <h2>Breast Cancer Information for <span class="cancer-type">Women</span></h2>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Symptoms</h3>
+                        <ul>
+                            <li>New lump in breast or underarm</li>
+                            <li>Thickening or swelling of breast tissue</li>
+                            <li>Irritation or dimpling of breast skin</li>
+                            <li>Nipple discharge other than milk</li>
+                            <li>Pain in any area of the breast</li>
+                            <li>Change in breast size or shape</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-shield-alt"></i> Precautions</h3>
+                        <ul>
+                            <li>Monthly self-examinations after age 20</li>
+                            <li>Clinical breast exams every 1-3 years (20-39)</li>
+                            <li>Annual mammograms after age 40</li>
+                            <li>Maintain healthy weight and exercise</li>
+                            <li>Limit alcohol consumption</li>
+                            <li>Consider genetic testing if family history</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-heartbeat"></i> Advice for Affected</h3>
+                        <ul>
+                            <li>Create a support network</li>
+                            <li>Discuss all treatment options with oncologist</li>
+                            <li>Consider joining support groups</li>
+                            <li>Manage treatment side effects proactively</li>
+                            <li>Maintain nutrition and light exercise</li>
+                            <li>Consider fertility preservation if needed</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="highlight">
+                    <h3><i class="fas fa-stethoscope"></i> Screening Recommendations</h3>
+                    <p>Women at average risk should begin yearly mammograms at age 40. Those with family history or genetic mutations may need earlier screening starting at age 30.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Prostate Cancer Content (Hidden by Default) -->
+        <div class="cancer-content" id="prostateContent" style="display:none">
+            <div class="content-section">
+                <h2>Prostate Cancer Information for <span class="cancer-type">Men</span></h2>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Symptoms</h3>
+                        <ul>
+                            <li>Trouble urinating or weak flow</li>
+                            <li>Blood in urine or semen</li>
+                            <li>Persistent pain in back/hips/pelvis</li>
+                            <li>Erectile dysfunction</li>
+                            <li>Discomfort when sitting (enlarged prostate)</li>
+                            <li>Frequent urination, especially at night</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-shield-alt"></i> Precautions</h3>
+                        <ul>
+                            <li>PSA blood test discussion at age 50 (45 for high-risk)</li>
+                            <li>Digital rectal exam (DRE) as recommended</li>
+                            <li>Maintain healthy weight</li>
+                            <li>Regular exercise regimen</li>
+                            <li>Increase consumption of tomatoes and cruciferous vegetables</li>
+                            <li>Limit red meat and high-fat dairy</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-heartbeat"></i> Advice for Affected</h3>
+                        <ul>
+                            <li>Understand Gleason score and cancer stage</li>
+                            <li>Discuss active surveillance vs. treatment options</li>
+                            <li>Consider side effects of treatments (incontinence, ED)</li>
+                            <li>Explore support groups for men</li>
+                            <li>Maintain pelvic floor exercises</li>
+                            <li>Address mental health concerns</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="highlight">
+                    <h3><i class="fas fa-stethoscope"></i> Screening Recommendations</h3>
+                    <p>Men should discuss prostate screening with their doctor starting at age 50 (age 45 for African Americans or those with family history). Screening includes PSA blood test and may include digital rectal exam.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FAQ Section -->
+        <div class="content-section">
+            <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+            
+            <div class="faq-section">
+                <div class="faq-item">
+                    <div class="faq-question">What's the survival rate for early-stage breast cancer?</div>
+                    <p>The 5-year survival rate for localized breast cancer is 99%. Early detection through screening dramatically improves outcomes.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Are prostate cancer screenings painful?</div>
+                    <p>The PSA test is a simple blood test. The digital rectal exam (DRE) may cause brief discomfort but is not typically painful.</p>
+                </div>
+                
+                <div class="faq-question">Can men get breast cancer?</div>
+                <p>Yes, though rare (about 1% of all breast cancers). Men should report any breast lumps or changes to their doctor immediately.</p>
+            </div>
+        </div>
+        
+        <!-- Search Results Section -->
+        <div class="search-results" id="searchResults" style="display:none">
+            <h2><i class="fas fa-search"></i> Search Results</h2>
+            <div id="resultsContainer"></div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Disclaimer: This information is for educational purposes only and not medical advice. Consult your healthcare provider.</p>
+        <p>© 2023 CancerCare Platform | Resources: <a href="https://www.cancer.org" style="color: #4da6ff;">American Cancer Society</a> | <a href="https://www.cdc.gov/cancer" style="color: #4da6ff;">CDC Cancer Resources</a></p>
+    </footer>
+
+    <script>
+        // Tab Switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Update tabs
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Update content
+                document.querySelectorAll('.cancer-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                document.getElementById(`${tab.dataset.tab}Content`).style.display = 'block';
+            });
+        });
+        
+        // Search Functionality
+        const searchBtn = document.getElementById('searchBtn');
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const resultsContainer = document.getElementById('resultsContainer');
+        
+        // Sample knowledge base
+        const knowledgeBase = [
+            {
+                question: "What are early signs of breast cancer?",
+                answer: "Early signs include a new lump in the breast or underarm, thickening or swelling of breast tissue, skin dimpling, nipple discharge other than milk, and any changes in breast size or shape.",
+                tags: ["breast", "symptoms"]
+            },
+            {
+                question: "How often should men get prostate screening?",
+                answer: "Men should discuss screening with their doctor starting at age 50 (age 45 for high-risk individuals). Screening frequency depends on PSA levels and risk factors, typically every 2 years if PSA is normal.",
+                tags: ["prostate", "screening"]
+            },
+            {
+                question: "What foods help prevent breast cancer?",
+                answer: "Foods that may help reduce breast cancer risk include cruciferous vegetables (broccoli, cauliflower), leafy greens, berries, fatty fish rich in omega-3s, walnuts, and legumes. Limit processed meats and alcohol.",
+                tags: ["breast", "prevention"]
+            },
+            {
+                question: "What treatments are available for prostate cancer?",
+                answer: "Treatment options include active surveillance, surgery (prostatectomy), radiation therapy, hormone therapy, chemotherapy, immunotherapy, and targeted therapy. The best approach depends on cancer stage and individual factors.",
+                tags: ["prostate", "treatment"]
+            },
+            {
+                question: "Can breast cancer be inherited?",
+                answer: "Yes, about 5-10% of breast cancers are hereditary. BRCA1 and BRCA2 gene mutations significantly increase risk. Genetic testing is recommended for those with family history.",
+                tags: ["breast", "genetics"]
+            }
+        ];
+        
+        // Search function
+        function performSearch() {
+            const query = searchInput.value.toLowerCase().trim();
+            if (!query) return;
+            
+            // Show results section
+            searchResults.style.display = 'block';
+            resultsContainer.innerHTML = '';
+            
+            // Filter relevant results
+            const relevantResults = knowledgeBase.filter(item => {
+                return item.question.toLowerCase().includes(query) || 
+                       item.answer.toLowerCase().includes(query) ||
+                       item.tags.some(tag => tag.includes(query));
+            });
+            
+            // Display results
+            if (relevantResults.length > 0) {
+                relevantResults.forEach(result => {
+                    const resultElement = document.createElement('div');
+                    resultElement.className = 'result-item';
+                    resultElement.innerHTML = `
+                        <h3>${result.question}</h3>
+                        <p>${result.answer}</p>
+                        <div class="tags"><i class="fas fa-tag"></i> ${result.tags.join(', ')}</div>
+                    `;
+                    resultsContainer.appendChild(resultElement);
+                });
+            } else {
+                resultsContainer.innerHTML = '<p>No results found. Try different keywords or ask about breast/prostate cancer symptoms, prevention, or treatments.</p>';
+            }
+            
+            // Scroll to results
+            searchResults.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Event listeners
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') performSearch();
+        });
+    </script>
+</body>
+</html>
