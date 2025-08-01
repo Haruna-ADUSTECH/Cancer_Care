@@ -19,6 +19,8 @@
             --accent: #e76f51;
             --light: #f8f9fa;
             --dark: #343a40;
+            --consultation: #2e7d32;
+            --pharmacy: #1565c0;
         }
         
         body {
@@ -229,8 +231,275 @@
             margin-top: 3rem;
         }
         
+        /* New Styles for Consultation Section */
+        .consultation-section {
+            background: linear-gradient(to right, #e8f5e9, #c8e6c9);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .consultation-section h2 {
+            color: var(--consultation);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .consultation-section h2 i {
+            margin-right: 10px;
+        }
+        
+        .consultation-search {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .consultation-search select, 
+        .consultation-search input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .consultation-search button {
+            background: var(--consultation);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .consultation-search button:hover {
+            background: #1b5e20;
+        }
+        
+        .consultation-packages {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .package-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .package-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .package-card h4 {
+            color: var(--consultation);
+            margin-bottom: 10px;
+        }
+        
+        .package-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2e7d32;
+            margin: 10px 0;
+        }
+        
+        .package-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+            text-align: left;
+        }
+        
+        .package-card ul li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .package-card ul li i {
+            color: #4caf50;
+            margin-right: 8px;
+            margin-top: 4px;
+        }
+        
+        .book-btn {
+            background: var(--consultation);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        
+        .book-btn:hover {
+            background: #1b5e20;
+        }
+        
+        /* Pharmacy Section Styles */
+        .pharmacy-section {
+            background: linear-gradient(to right, #e3f2fd, #bbdefb);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .pharmacy-section h2 {
+            color: var(--pharmacy);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .pharmacy-section h2 i {
+            margin-right: 10px;
+        }
+        
+        .drug-categories {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            background: #e3f2fd;
+            border: 1px solid #90caf9;
+            border-radius: 20px;
+            padding: 8px 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-btn.active, .category-btn:hover {
+            background: var(--pharmacy);
+            color: white;
+            border-color: var(--pharmacy);
+        }
+        
+        .drugs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .drug-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .drug-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .drug-image {
+            height: 160px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #90a4ae;
+            font-size: 3rem;
+        }
+        
+        .drug-details {
+            padding: 1.5rem;
+        }
+        
+        .drug-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .drug-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            min-height: 60px;
+        }
+        
+        .drug-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1565c0;
+            margin-bottom: 15px;
+        }
+        
+        .add-to-cart {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .quantity-btn {
+            background: #f5f5f5;
+            border: none;
+            width: 36px;
+            height: 36px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        .quantity-input {
+            width: 40px;
+            height: 36px;
+            text-align: center;
+            border: none;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+        }
+        
+        .cart-btn {
+            background: var(--pharmacy);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .cart-btn:hover {
+            background: #0d47a1;
+        }
+        
         @media (max-width: 768px) {
-            .info-grid {
+            .info-grid, .drugs-grid, .packages-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -240,6 +509,23 @@
             
             .search-container {
                 margin: 1rem 0;
+                width: 100%;
+            }
+            
+            .consultation-search {
+                flex-direction: column;
+            }
+            
+            .add-to-cart {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .quantity-control {
+                width: 100%;
+            }
+            
+            .cart-btn {
                 width: 100%;
             }
         }
@@ -266,6 +552,68 @@
         <div class="tabs">
             <div class="tab active" data-tab="breast">Breast Cancer</div>
             <div class="tab" data-tab="prostate">Prostate Cancer</div>
+        </div>
+        
+        <!-- New Consultation Section -->
+        <div class="consultation-section">
+            <h2><i class="fas fa-user-md"></i> Live Cancer Doctor Consultation</h2>
+            
+            <div class="consultation-search">
+                <select id="specialtySelect">
+                    <option value="">Select Specialty</option>
+                    <option value="oncology">Oncology</option>
+                    <option value="surgical">Surgical Oncology</option>
+                    <option value="radiation">Radiation Oncology</option>
+                    <option value="gynecologic">Gynecologic Oncology</option>
+                </select>
+                
+                <input type="text" id="doctorSearch" placeholder="Search by doctor name or specialty...">
+                
+                <button id="findDoctorBtn"><i class="fas fa-search"></i> Find Doctor</button>
+            </div>
+            
+            <p>Connect with experienced cancer specialists for personalized advice and treatment plans.</p>
+            
+            <div class="consultation-packages">
+                <h3>Consultation Packages</h3>
+                <div class="packages-grid">
+                    <div class="package-card">
+                        <h4>Initial Consultation</h4>
+                        <div class="package-price">₦15,000</div>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> 30-minute video consultation</li>
+                            <li><i class="fas fa-check-circle"></i> Medical history review</li>
+                            <li><i class="fas fa-check-circle"></i> Preliminary assessment</li>
+                            <li><i class="fas fa-check-circle"></i> Basic treatment guidance</li>
+                        </ul>
+                        <button class="book-btn">Book Now</button>
+                    </div>
+                    
+                    <div class="package-card">
+                        <h4>Comprehensive Evaluation</h4>
+                        <div class="package-price">₦25,000</div>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> 45-minute in-depth consultation</li>
+                            <li><i class="fas fa-check-circle"></i> Treatment plan development</li>
+                            <li><i class="fas fa-check-circle"></i> Second opinion service</li>
+                            <li><i class="fas fa-check-circle"></i> Prescription guidance</li>
+                        </ul>
+                        <button class="book-btn">Book Now</button>
+                    </div>
+                    
+                    <div class="package-card">
+                        <h4>Follow-up Session</h4>
+                        <div class="package-price">₦10,000</div>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> 20-minute check-up</li>
+                            <li><i class="fas fa-check-circle"></i> Progress evaluation</li>
+                            <li><i class="fas fa-check-circle"></i> Treatment adjustments</li>
+                            <li><i class="fas fa-check-circle"></i> Side effect management</li>
+                        </ul>
+                        <button class="book-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <!-- Breast Cancer Content -->
@@ -306,192 +654,4 @@
                             <li>Consider joining support groups</li>
                             <li>Manage treatment side effects proactively</li>
                             <li>Maintain nutrition and light exercise</li>
-                            <li>Consider fertility preservation if needed</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="highlight">
-                    <h3><i class="fas fa-stethoscope"></i> Screening Recommendations</h3>
-                    <p>Women at average risk should begin yearly mammograms at age 40. Those with family history or genetic mutations may need earlier screening starting at age 30.</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Prostate Cancer Content (Hidden by Default) -->
-        <div class="cancer-content" id="prostateContent" style="display:none">
-            <div class="content-section">
-                <h2>Prostate Cancer Information for <span class="cancer-type">Men</span></h2>
-                
-                <div class="info-grid">
-                    <div class="info-card">
-                        <h3><i class="fas fa-exclamation-triangle"></i> Symptoms</h3>
-                        <ul>
-                            <li>Trouble urinating or weak flow</li>
-                            <li>Blood in urine or semen</li>
-                            <li>Persistent pain in back/hips/pelvis</li>
-                            <li>Erectile dysfunction</li>
-                            <li>Discomfort when sitting (enlarged prostate)</li>
-                            <li>Frequent urination, especially at night</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3><i class="fas fa-shield-alt"></i> Precautions</h3>
-                        <ul>
-                            <li>PSA blood test discussion at age 50 (45 for high-risk)</li>
-                            <li>Digital rectal exam (DRE) as recommended</li>
-                            <li>Maintain healthy weight</li>
-                            <li>Regular exercise regimen</li>
-                            <li>Increase consumption of tomatoes and cruciferous vegetables</li>
-                            <li>Limit red meat and high-fat dairy</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3><i class="fas fa-heartbeat"></i> Advice for Affected</h3>
-                        <ul>
-                            <li>Understand Gleason score and cancer stage</li>
-                            <li>Discuss active surveillance vs. treatment options</li>
-                            <li>Consider side effects of treatments (incontinence, ED)</li>
-                            <li>Explore support groups for men</li>
-                            <li>Maintain pelvic floor exercises</li>
-                            <li>Address mental health concerns</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="highlight">
-                    <h3><i class="fas fa-stethoscope"></i> Screening Recommendations</h3>
-                    <p>Men should discuss prostate screening with their doctor starting at age 50 (age 45 for African Americans or those with family history). Screening includes PSA blood test and may include digital rectal exam.</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- FAQ Section -->
-        <div class="content-section">
-            <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
-            
-            <div class="faq-section">
-                <div class="faq-item">
-                    <div class="faq-question">What's the survival rate for early-stage breast cancer?</div>
-                    <p>The 5-year survival rate for localized breast cancer is 99%. Early detection through screening dramatically improves outcomes.</p>
-                </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question">Are prostate cancer screenings painful?</div>
-                    <p>The PSA test is a simple blood test. The digital rectal exam (DRE) may cause brief discomfort but is not typically painful.</p>
-                </div>
-                
-                <div class="faq-question">Can men get breast cancer?</div>
-                <p>Yes, though rare (about 1% of all breast cancers). Men should report any breast lumps or changes to their doctor immediately.</p>
-            </div>
-        </div>
-        
-        <!-- Search Results Section -->
-        <div class="search-results" id="searchResults" style="display:none">
-            <h2><i class="fas fa-search"></i> Search Results</h2>
-            <div id="resultsContainer"></div>
-        </div>
-    </div>
-    
-    <footer>
-        <p>Disclaimer: This information is for educational purposes only and not medical advice. Consult your healthcare provider.</p>
-        <p>© 2025 CancerCare Platform | Resources: <a href="https://www.cancer.org" style="color: #4da6ff;">Engr Haruna Ali Isah Cancer Hub research Center</a> | <a href="https://www.cdc.gov/cancer" style="color: #4da6ff;">CDC Cancer Resources</a></p>
-    </footer>
-
-    <script>
-        // Tab Switching
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Update tabs
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                
-                // Update content
-                document.querySelectorAll('.cancer-content').forEach(content => {
-                    content.style.display = 'none';
-                });
-                document.getElementById(`${tab.dataset.tab}Content`).style.display = 'block';
-            });
-        });
-        
-        // Search Functionality
-        const searchBtn = document.getElementById('searchBtn');
-        const searchInput = document.getElementById('searchInput');
-        const searchResults = document.getElementById('searchResults');
-        const resultsContainer = document.getElementById('resultsContainer');
-        
-        // Sample knowledge base
-        const knowledgeBase = [
-            {
-                question: "What are early signs of breast cancer?",
-                answer: "Early signs include a new lump in the breast or underarm, thickening or swelling of breast tissue, skin dimpling, nipple discharge other than milk, and any changes in breast size or shape.",
-                tags: ["breast", "symptoms"]
-            },
-            {
-                question: "How often should men get prostate screening?",
-                answer: "Men should discuss screening with their doctor starting at age 50 (age 45 for high-risk individuals). Screening frequency depends on PSA levels and risk factors, typically every 2 years if PSA is normal.",
-                tags: ["prostate", "screening"]
-            },
-            {
-                question: "What foods help prevent breast cancer?",
-                answer: "Foods that may help reduce breast cancer risk include cruciferous vegetables (broccoli, cauliflower), leafy greens, berries, fatty fish rich in omega-3s, walnuts, and legumes. Limit processed meats and alcohol.",
-                tags: ["breast", "prevention"]
-            },
-            {
-                question: "What treatments are available for prostate cancer?",
-                answer: "Treatment options include active surveillance, surgery (prostatectomy), radiation therapy, hormone therapy, chemotherapy, immunotherapy, and targeted therapy. The best approach depends on cancer stage and individual factors.",
-                tags: ["prostate", "treatment"]
-            },
-            {
-                question: "Can breast cancer be inherited?",
-                answer: "Yes, about 5-10% of breast cancers are hereditary. BRCA1 and BRCA2 gene mutations significantly increase risk. Genetic testing is recommended for those with family history.",
-                tags: ["breast", "genetics"]
-            }
-        ];
-        
-        // Search function
-        function performSearch() {
-            const query = searchInput.value.toLowerCase().trim();
-            if (!query) return;
-            
-            // Show results section
-            searchResults.style.display = 'block';
-            resultsContainer.innerHTML = '';
-            
-            // Filter relevant results
-            const relevantResults = knowledgeBase.filter(item => {
-                return item.question.toLowerCase().includes(query) || 
-                       item.answer.toLowerCase().includes(query) ||
-                       item.tags.some(tag => tag.includes(query));
-            });
-            
-            // Display results
-            if (relevantResults.length > 0) {
-                relevantResults.forEach(result => {
-                    const resultElement = document.createElement('div');
-                    resultElement.className = 'result-item';
-                    resultElement.innerHTML = `
-                        <h3>${result.question}</h3>
-                        <p>${result.answer}</p>
-                        <div class="tags"><i class="fas fa-tag"></i> ${result.tags.join(', ')}</div>
-                    `;
-                    resultsContainer.appendChild(resultElement);
-                });
-            } else {
-                resultsContainer.innerHTML = '<p>No results found. Try different keywords or ask about breast/prostate cancer symptoms, prevention, or treatments.</p>';
-            }
-            
-            // Scroll to results
-            searchResults.scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        // Event listeners
-        searchBtn.addEventListener('click', performSearch);
-        searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') performSearch();
-        });
-    </script>
-</body>
-</html>
+             
