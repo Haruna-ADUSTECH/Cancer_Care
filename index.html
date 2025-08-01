@@ -1,1 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CancerCare - Comprehensive Cancer Support</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #9e5b9a;
+            --accent: #e76f51;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --pharmacy: #4caf50;
+            --doctors: #2196f3;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .search-container {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 2rem;
+            position: relative;
+        }
+        
+        .search-container input {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .search-container button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        .contact {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            flex: 1;
+            width: 100%;
+        }
+        
+        .tabs {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            padding: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tab.active {
+            color: white;
+        }
+        
+        .tab[data-tab="breast"].active {
+            background: var(--secondary);
+        }
+        
+        .tab[data-tab="prostate"].active {
+            background: var(--primary);
+        }
+        
+        .tab[data-tab="pharmacy"].active {
+            background: var(--pharmacy);
+        }
+        
+        .tab[data-tab="doctors"].active {
+            background: var(--doctors);
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .content-section h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .content-section h2 i {
+            margin-right: 10px;
+        }
+        
+        .cancer-type {
+            color: var(--secondary);
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .info-card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--accent);
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .info-card h3 {
+            display: flex;
+            align-items: center;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        
+        .info-card h3 i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .info-card ul {
+            padding-left: 1.5rem;
+        }
+        
+        .info-card li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .info-card li:before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            display: inline-block; 
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .highlight {
+            background: #e3f2fd;
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .highlight h3 {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight h3 i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .faq-section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+        }
+        
+        .faq-item {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1rem;
+        }
+        
+        .faq-item:last-child {
+            border: none;
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+        }
+        
+        .faq-question i {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+        
+        .search-results {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: none;
+        }
+        
+        .result-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .result-item:last-child {
+            border: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .result-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .tags {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        .tags i {
+            margin-right: 5px;
+        }
+        
+        /* Pharmacy & Doctors Styles */
+        .medication-grid, .doctors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .medication-card, .doctor-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .medication-card:hover, .doctor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+        
+        .med-header {
+            background-color: var(--pharmacy);
+            color: white;
+            padding: 1rem;
+        }
+        
+        .doc-header {
+            background-color: var(--doctors);
+            color: white;
+            padding: 1rem;
+        }
+        
+        .med-content, .doc-content {
+            padding: 1.5rem;
+        }
+        
+        .price-tag {
+            background: #e8f5e9;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #2e7d32;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .consultation-fee {
+            background: #e3f2fd;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #0d47a1;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .med-details, .doc-details {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        .med-details span, .doc-details span {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .med-uses, .doc-specialty {
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: #f5f5f5;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .med-uses i, .doc-specialty i {
+            margin-right: 5px;
+            color: var(--accent);
+        }
+        
+        .rating {
+            color: #ffc107;
+            margin: 5px 0;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        footer a {
+            color: #4da6ff;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .disclaimer {
+            font-size: 0.9rem;
+            max-width: 800px;
+            margin: 0 auto 1rem;
+            color: #ccc;
+        }
+        
+        @media (max-width: 768px) {
+            .info-grid, .medication-grid, .doctors-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .search-container {
+                margin: 1rem 0;
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .contact {
+                margin-top: 10px;
+                align-self: center;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-hand-holding-heart"></i>
+                CancerCare
+            </div>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Ask about breast or prostate cancer...">
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="contact">
+                <i class="fas fa-phone-alt"></i> Helpline: 1-800-CANCER
+            </div>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" data-tab="breast">Breast Cancer</div>
+            <div class="tab" data-tab="prostate">Prostate Cancer</div>
+            <div class="tab" data-tab="pharmacy">Pharmacy</div>
+            <div class="tab" data-tab="doctors">Doctors</div>
+        </div>
+        
+        <!-- Breast Cancer Content -->
+        <div class="cancer-content" id="breastContent">
+            <div class="content-section">
+                <h2><i class="fas fa-female"></i> Breast Cancer Information</h2>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Symptoms</h3>
+                        <ul>
+                            <li>New lump in breast or underarm</li>
+                            <li>Thickening or swelling of breast tissue</li>
+                            <li>Irritation or dimpling of breast skin</li>
+                            <li>Nipple discharge other than milk</li>
+                            <li>Pain in any area of the breast</li>
+                            <li>Change in breast size or shape</li>
+                            <li>Redness or flaky skin in nipple area</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-shield-alt"></i> Precautions & Prevention</h3>
+                        <ul>
+                            <li>Monthly self-examinations after age 20</li>
+                            <li>Clinical breast exams every 1-3 years (20-39)</li>
+                            <li>Annual mammograms after age 40</li>
+                            <li>Maintain healthy weight and exercise</li>
+                            <li>Limit alcohol consumption to 1 drink/day</li>
+                            <li>Consider genetic testing if family history</li>
+                            <li>Breastfeed if possible</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-heartbeat"></i> Advice for Affected Individuals</h3>
+                        <ul>
+                            <li>Create a support network of family and friends</li>
+                            <li>Discuss all treatment options with oncologist</li>
+                            <li>Consider joining support groups</li>
+                            <li>Manage treatment side effects proactively</li>
+                            <li>Maintain nutrition and light exercise</li>
+                            <li>Consider fertility preservation if needed</li>
+                            <li>Address emotional health with counseling</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="highlight">
+                    <h3><i class="fas fa-stethoscope"></i> Screening Recommendations</h3>
+                    <p>Women at average risk should begin yearly mammograms at age 40. Those with family history or genetic mutations may need earlier screening starting at age 30. Clinical breast exams are recommended every 1-3 years for women in their 20s-30s and annually after 40.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Prostate Cancer Content -->
+        <div class="cancer-content" id="prostateContent" style="display:none">
+            <div class="content-section">
+                <h2><i class="fas fa-male"></i> Prostate Cancer Information</h2>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Symptoms</h3>
+                        <ul>
+                            <li>Trouble urinating or weak flow</li>
+                            <li>Blood in urine or semen</li>
+                            <li>Persistent pain in back/hips/pelvis</li>
+                            <li>Erectile dysfunction</li>
+                            <li>Discomfort when sitting (enlarged prostate)</li>
+                            <li>Frequent urination, especially at night</li>
+                            <li>Pain or burning during urination</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-shield-alt"></i> Precautions & Prevention</h3>
+                        <ul>
+                            <li>PSA blood test discussion at age 50 (45 for high-risk)</li>
+                            <li>Digital rectal exam (DRE) as recommended</li>
+                            <li>Maintain healthy weight</li>
+                            <li>Regular exercise regimen</li>
+                            <li>Increase consumption of tomatoes and cruciferous vegetables</li>
+                            <li>Limit red meat and high-fat dairy</li>
+                            <li>Consider selenium and vitamin E supplements</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3><i class="fas fa-heartbeat"></i> Advice for Affected Individuals</h3>
+                        <ul>
+                            <li>Understand Gleason score and cancer stage</li>
+                            <li>Discuss active surveillance vs. treatment options</li>
+                            <li>Consider side effects of treatments (incontinence, ED)</li>
+                            <li>Explore support groups for men</li>
+                            <li>Maintain pelvic floor exercises</li>
+                            <li>Address mental health concerns</li>
+                            <li>Consider impact on sexual health and relationships</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="highlight">
+                    <h3><i class="fas fa-stethoscope"></i> Screening Recommendations</h3>
+                    <p>Men should discuss prostate screening with their doctor starting at age 50 (age 45 for African Americans or those with family history). Screening includes PSA blood test and may include digital rectal exam. Screening frequency depends on PSA levels and risk factors.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pharmacy Section -->
+        <div class="cancer-content" id="pharmacyContent" style="display:none">
+            <div class="content-section">
+                <h2><i class="fas fa-prescription-bottle-alt"></i> Cancer Medications & Pharmacy</h2>
+                <p>Find essential medications for breast and prostate cancer treatment with pricing information.</p>
+                
+                <div class="medication-grid">
+                    <!-- Breast Cancer Medications -->
+                    <div class="medication-card">
+                        <div class="med-header">
+                            <h3>Tamoxifen</h3>
+                            <div class="price-tag">$85 - $120 per month</div>
+                        </div>
+                        <div class="med-content">
+                            <div class="med-uses"><i class="fas fa-info-circle"></i> Hormone therapy for ER+ breast cancer</div>
+                            <div class="med-details">
+                                <p><span>Dosage:</span> 20mg tablet daily</p>
+                                <p><span>Common Side Effects:</span> Hot flashes, fatigue, mood changes</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="medication-card">
+                        <div class="med-header">
+                            <h3>Anastrozole</h3>
+                            <div class="price-tag">$110 - $150 per month</div>
+                        </div>
+                        <div class="med-content">
+                            <div class="med-uses"><i class="fas fa-info-circle"></i> Aromatase inhibitor for postmenopausal women</div>
+                            <div class="med-details">
+                                <p><span>Dosage:</span> 1mg tablet daily</p>
+                                <p><span>Common Side Effects:</span> Joint pain, bone loss, fatigue</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Prostate Cancer Medications -->
+                    <div class="medication-card">
+                        <div class="med-header">
+                            <h3>Abiraterone</h3>
+                            <div class="price-tag">$2,800 - $3,500 per month</div>
+                        </div>
+                        <div class="med-content">
+                            <div class="med-uses"><i class="fas fa-info-circle"></i> Treatment for metastatic prostate cancer</div>
+                            <div class="med-details">
+                                <p><span>Dosage:</span> 1000mg tablet daily with prednisone</p>
+                                <p><span>Common Side Effects:</span> Fatigue, joint swelling, hypertension</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="medication-card">
+                        <div class="med-header">
+                            <h3>Enzalutamide</h3>
+                            <div class="price-tag">$3,200 - $4,000 per month</div>
+                        </div>
+                        <div class="med-content">
+                            <div class="med-uses"><i class="fas fa-info-circle"></i> Treatment for castration-resistant prostate cancer</div>
+                            <div class="med-details">
+                                <p><span>Dosage:</span> 160mg capsule daily</p>
+                                <p><span>Common Side Effects:</span> Fatigue, hot flashes, hypertension</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Supportive Care -->
+                    <div class="medication-card">
+                        <div class="med-header">
+                            <h3>Ondansetron</h3>
+                            <div class="price-tag">$40 - $70 per month</div>
+                        </div>
+                        <div class="med-content">
+                            <div class="med-uses"><i class="fas fa-info-circle"></i> Anti-nausea medication</div>
+                            <div class="med-details">
+                                <p><span>Dosage:</span> 4-8mg as needed</p>
+                                <p><span>Common Side Effects:</span> Headache, constipation</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="medication-card">
+                        <div class="med-header">
+                            <h3>Pegfilgrastim</h3>
+                            <div class="price-tag">$3,500 - $4,500 per dose</div>
+                        </div>
+                        <div class="med-content">
+                            <div class="med-uses"><i class="fas fa-info-circle"></i> White blood cell booster</div>
+                            <div class="med-details">
+                                <p><span>Dosage:</span> Single injection post-chemo</p>
+                                <p><span>Common Side Effects:</span> Bone pain, fatigue</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight">
+                    <h3><i class="fas fa-info-circle"></i> Prescription Assistance</h3>
+                    <p>Many pharmaceutical companies offer patient assistance programs for expensive cancer medications. Our pharmacists can help you navigate these programs to reduce your out-of-pocket costs. Contact our pharmacy team at 1-800-CANCER-PHARM for assistance.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Doctors Section -->
+        <div class="cancer-content" id="doctorsContent" style="display:none">
+            <div class="content-section">
+                <h2><i class="fas fa-user-md"></i> Oncology Specialists</h2>
+                <p>Connect with experienced oncologists specializing in breast and prostate cancer.</p>
+                
+                <div class="doctors-grid">
+                    <!-- Breast Cancer Specialists -->
+                    <div class="doctor-card">
+                        <div class="doc-header">
+                            <h3>Dr. Sarah Johnson</h3>
+                            <div class="consultation-fee">$250 - $350</div>
+                        </div>
+                        <div class="doc-content">
+                            <div class="doc-specialty"><i class="fas fa-stethoscope"></i> Breast Surgical Oncology</div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>4.7 (128 reviews)</span>
+                            </div>
+                            <div class="doc-details">
+                                <p><span>Hospital:</span> City Cancer Center</p>
+                                <p><span>Experience:</span> 15+ years</p>
+                                <p><span>Specializes in:</span> Lumpectomy, mastectomy, oncoplastic surgery</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="doctor-card">
+                        <div class="doc-header">
+                            <h3>Dr. Michael Chen</h3>
+                            <div class="consultation-fee">$300 - $400</div>
+                        </div>
+                        <div class="doc-content">
+                            <div class="doc-specialty"><i class="fas fa-stethoscope"></i> Medical Oncology (Breast)</div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>4.9 (95 reviews)</span>
+                            </div>
+                            <div class="doc-details">
+                                <p><span>Clinic:</span> Hope Oncology Associates</p>
+                                <p><span>Experience:</span> 12+ years</p>
+                                <p><span>Specializes in:</span> Chemotherapy, targeted therapy, immunotherapy</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Prostate Cancer Specialists -->
+                    <div class="doctor-card">
+                        <div class="doc-header">
+                            <h3>Dr. Robert Williams</h3>
+                            <div class="consultation-fee">$275 - $375</div>
+                        </div>
+                        <div class="doc-content">
+                            <div class="doc-specialty"><i class="fas fa-stethoscope"></i> Urologic Oncology</div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>4.8 (142 reviews)</span>
+                            </div>
+                            <div class="doc-details">
+                                <p><span>Hospital:</span> University Medical Center</p>
+                                <p><span>Experience:</span> 18+ years</p>
+                                <p><span>Specializes in:</span> Robotic prostatectomy, focal therapy</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="doctor-card">
+                        <div class="doc-header">
+                            <h3>Dr. Lisa Rodriguez</h3>
+                            <div class="consultation-fee">$325 - $425</div>
+                        </div>
+                        <div class="doc-content">
+                            <div class="doc-specialty"><i class="fas fa-stethoscope"></i> Radiation Oncology (Prostate)</div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>4.6 (87 reviews)</span>
+                            </div>
+                            <div class="doc-details">
+                                <p><span>Clinic:</span> Advanced Radiation Center</p>
+                                <p><span>Experience:</span> 10+ years</p>
+                                <p><span>Specializes in:</span> IMRT, brachytherapy, SBRT</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Supportive Care -->
+                    <div class="doctor-card">
+                        <div class="doc-header">
+                            <h3>Dr. Emily Park</h3>
+                            <div class="consultation-fee">$200 - $300</div>
+                        </div>
+                        <div class="doc-content">
+                            <div class="doc-specialty"><i class="fas fa-stethoscope"></i> Psycho-Oncology</div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>4.9 (63 reviews)</span>
+                            </div>
+                            <div class="doc-details">
+                                <p><span>Practice:</span> Cancer Support Services</p>
+                                <p><span>Experience:</span> 8+ years</p>
+                                <p><span>Specializes in:</span> Emotional support, coping strategies, family counseling</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="doctor-card">
+                        <div class="doc-header">
+                            <h3>Dr. James Wilson</h3>
+                            <div class="consultation-fee">$225 - $325</div>
+                        </div>
+                        <div class="doc-content">
+                            <div class="doc-specialty"><i class="fas fa-stethoscope"></i> Integrative Oncology</div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>4.7 (78 reviews)</span>
+                            </div>
+                            <div class="doc-details">
+                                <p><span>Practice:</span> Holistic Cancer Care</p>
+                                <p><span>Experience:</span> 11+ years</p>
+                                <p><span>Specializes in:</span> Nutrition, acupuncture, mind-body therapies</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight">
+                    <h3><i class="fas fa-calendar-check"></i> Book a Consultation</h3>
+                    <p>To schedule an appointment with any of our specialists, call 1-800-CANCER-DOC or use our online booking system. Many insurance plans are accepted, and financial assistance programs are available for qualifying patients.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FAQ Section -->
+        <div class="content-section">
+            <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+            
+            <div class="faq-section">
+                <div class="faq-item">
+                    <div class="faq-question"><i class="fas fa-question"></i> What's the survival rate for early-stage breast cancer?</div>
+                    <p>The 5-year survival rate for localized breast cancer is 99%. Early detection through screening dramatically improves outcomes. Survival rates decrease as the cancer progresses to more advanced stages.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question"><i class="fas fa-question"></i> Are prostate cancer screenings painful?</div>
+                    <p>The PSA test is a simple blood test. The digital rectal exam (DRE) may cause brief discomfort but is not typically painful. Both are quick procedures that can be completed during a routine doctor's visit.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question"><i class="fas fa-question"></i> Can men get breast cancer?</div>
+                    <p>Yes, though rare (about 1% of all breast cancers). Men should report any breast lumps or changes to their doctor immediately. Risk factors include family history, radiation exposure, and certain genetic conditions.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question"><i class="fas fa-question"></i> What are the treatment options for prostate cancer?</div>
+                    <p>Options include active surveillance, surgery (prostatectomy), radiation therapy, hormone therapy, chemotherapy, immunotherapy, and targeted therapy. Treatment choice depends on cancer stage, age, and overall health.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question"><i class="fas fa-question"></i> Are cancer medications covered by insurance?</div>
+                    <p>Most insurance plans cover FDA-approved cancer medications, but copays vary. Many pharmaceutical companies offer patient assistance programs. Our pharmacists can help you navigate coverage options and financial assistance.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question"><i class="fas fa-question"></i> How do I choose the right oncologist?</div>
+                    <p>Consider the doctor's specialization, experience with your specific cancer type, hospital affiliation, communication style, and patient reviews. Many patients get second opinions before starting treatment.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Search Results Section -->
+        <div class="search-results" id="searchResults">
+            <h2><i class="fas fa-search"></i> Search Results</h2>
+            <div id="resultsContainer"></div>
+        </div>
+    </div>
+    
+    <footer>
+        <p class="disclaimer">Disclaimer: This information is for educational purposes only and not medical advice. Consult your healthcare provider for diagnosis and treatment of any medical condition. Medication prices and consultation fees are estimates and may vary.</p>
+        <p>© 2023 CancerCare Platform | Resources: <a href="https://www.cancer.org">American Cancer Society</a> | <a href="https://www.cdc.gov/cancer">CDC Cancer Resources</a> | <a href="https://www.breastcancer.org">BreastCancer.org</a> | <a href="https://www.pcf.org">Prostate Cancer Foundation</a></p>
+    </footer>
 
+    <script>
+        // Tab Switching
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Update tabs
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    // Hide all content sections
+                    document.querySelectorAll('.cancer-content').forEach(content => {
+                        content.style.display = 'none';
+                    });
+                    
+                    // Show the selected content
+                    document.getElementById(`${tab.dataset.tab}Content`).style.display = 'block';
+                });
+            });
+            
+            // Search Functionality
+            const searchBtn = document.getElementById('searchBtn');
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            const resultsContainer = document.getElementById('resultsContainer');
+            
+            // Enhanced knowledge base
+            const knowledgeBase = [
+                {
+                    question: "What are early signs of breast cancer?",
+                    answer: "Early signs include a new lump in the breast or underarm, thickening or swelling of breast tissue, skin dimpling, nipple discharge other than milk, and any changes in breast size or shape. Regular self-exams help detect changes early.",
+                    tags: ["breast", "symptoms", "early detection"]
+                },
+                {
+                    question: "How often should men get prostate screening?",
+                    answer: "Men should discuss screening with their doctor starting at age 50 (age 45 for high-risk individuals). Screening frequency depends on PSA levels and risk factors, typically every 2 years if PSA is normal, annually if elevated.",
+                    tags: ["prostate", "screening", "prevention"]
+                },
+                {
+                    question: "What foods help prevent breast cancer?",
+                    answer: "Foods that may help reduce breast cancer risk include cruciferous vegetables (broccoli, cauliflower), leafy greens, berries, fatty fish rich in omega-3s, walnuts, and legumes. Limit processed meats and alcohol.",
+                    tags: ["breast", "prevention", "nutrition"]
+                },
+                {
+                    question: "What treatments are available for prostate cancer?",
+                    answer: "Treatment options include active surveillance, surgery (prostatectomy), radiation therapy, hormone therapy, chemotherapy, immunotherapy, and targeted therapy. The best approach depends on cancer stage, age, and overall health.",
+                    tags: ["prostate", "treatment", "options"]
+                },
+                {
+                    question: "Can breast cancer be inherited?",
+                    answer: "Yes, about 5-10% of breast cancers are hereditary. BRCA1 and BRCA2 gene mutations significantly increase risk. Genetic testing is recommended for those with family history of breast or ovarian cancer.",
+                    tags: ["breast", "genetics", "risk factors"]
+                },
+                {
+                    question: "What are risk factors for prostate cancer?",
+                    answer: "Risk factors include age (most cases after 50), family history, African ancestry, obesity, and certain genetic mutations. Lifestyle factors like diet and smoking may also contribute to risk.",
+                    tags: ["prostate", "risk factors", "prevention"]
+                },
+                {
+                    question: "How effective is breast cancer screening?",
+                    answer: "Mammograms can detect breast cancer 2-3 years before a lump can be felt. Screening reduces breast cancer mortality by about 20% for women 40+. Early detection significantly improves treatment outcomes.",
+                    tags: ["breast", "screening", "mammogram"]
+                },
+                {
+                    question: "What are side effects of prostate cancer treatment?",
+                    answer: "Common side effects include urinary incontinence, erectile dysfunction, bowel problems, and fatigue. Side effects vary by treatment type and can often be managed with medication or therapy.",
+                    tags: ["prostate", "treatment", "side effects"]
+                },
+                {
+                    question: "What is the cost of breast cancer medications?",
+                    answer: "Common medications range from $85-$150/month for hormone therapies to $3,500-$4,500 for specialized treatments. Financial assistance programs are available.",
+                    tags: ["pharmacy", "medication", "cost"]
+                },
+                {
+                    question: "How much does an oncology consultation cost?",
+                    answer: "Initial consultations with oncologists typically range from $200-$425 depending on the specialist's experience and location. Follow-up visits are usually less expensive.",
+                    tags: ["doctors", "consultation", "fees"]
+                }
+            ];
+            
+            // Search function
+            function performSearch() {
+                const query = searchInput.value.toLowerCase().trim();
+                if (!query) return;
+                
+                // Show results section
+                searchResults.style.display = 'block';
+                resultsContainer.innerHTML = '';
+                
+                // Filter relevant results
+                const relevantResults = knowledgeBase.filter(item => {
+                    const questionMatch = item.question.toLowerCase().includes(query);
+                    const answerMatch = item.answer.toLowerCase().includes(query);
+                    const tagMatch = item.tags.some(tag => tag.includes(query));
+                    
+                    return questionMatch || answerMatch || tagMatch;
+                });
+                
+                // Display results
+                if (relevantResults.length > 0) {
+                    relevantResults.forEach(result => {
+                        const resultElement = document.createElement('div');
+                        resultElement.className = 'result-item';
+                        resultElement.innerHTML = `
+                            <h3>${result.question}</h3>
+                            <p>${result.answer}</p>
+                            <div class="tags"><i class="fas fa-tag"></i> ${result.tags.join(', ')}</div>
+                        `;
+                        resultsContainer.appendChild(resultElement);
+                    });
+                } else {
+                    resultsContainer.innerHTML = '<p>No results found. Try different keywords or ask about breast/prostate cancer symptoms, prevention, treatments, medications, or doctors.</p>';
+                }
+                
+                // Scroll to results
+                searchResults.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            // Event listeners
+            searchBtn.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') performSearch();
+            });
+        });
+    </script>
+</body>
+</html>
